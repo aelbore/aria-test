@@ -1,9 +1,10 @@
 {
   "name": "aria-test",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "aria-test.js",
   "scripts": {
+    "build": "ts-node tools/build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,7 +22,7 @@
     "aria-build": "^0.0.3"
   },
   "devDependencies": {
-    "aria-build": "0.0.3",
+    "aria-build": "^0.0.3",
     "typescript": "^3.5.1"
   },
   "dependencies": {
