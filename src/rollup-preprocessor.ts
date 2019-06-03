@@ -1,6 +1,8 @@
 import { typescript2, createTSConfig, nodeResolve, commonjs } from 'aria-build'
 const istanbul = require('rollup-plugin-istanbul')
 
+export { istanbul }
+
 export function createRollupPreprocessor(opitions: { plugins?: any[], custom?: boolean }) {
   const { plugins, custom } = opitions
   
