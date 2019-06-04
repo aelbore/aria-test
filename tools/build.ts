@@ -4,6 +4,7 @@ import { bundle, clean, TSRollupConfig } from 'aria-build'
 
   const external = [
     'aria-build',
+    'rollup',
     'rollup-plugin-istanbul'
   ]
 

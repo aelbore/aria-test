@@ -1,18 +1,36 @@
 import * as path from 'path'
-import { createRollupPreprocessor } from './rollup-preprocessor';
+import { createRollupPreprocessor } from './rollup-preprocessor'
+import { karmaPlugins } from './plugins'
 
 const paths = ['node_modules', '.tmp', 'coverage']
 const COVERAGE_DEST_PATH = path.resolve(path.join(...paths))
+
+const generatePlugins = (plugins: any[] = []) => {
+  return plugins.map(plugin => {
+    if (typeof plugin === 'string') {
+      plugin = require(plugin)
+    }
+    return plugin
+  })
+}
 
 export interface KarmaOptions {
   files?: Array<string | { pattern?: string }>;
   frameworks?: string[];
   plugins?: any[];
-  rollup?: { plugins?: any[], custom?: boolean },
+  rollup?: { 
+    plugins?: any[], 
+    custom?: boolean 
+  },
   preprocessors?: {   
     [key: string ]: any
   },
-  coverageThresholds?: any;
+  coverageThresholds?: {
+    statements?: number,
+    branches?: number,
+    functions?:number,
+    lines?: number
+  }
 }
 
 export function createKarmaConfig(options?: KarmaOptions) {
@@ -21,9 +39,10 @@ export function createKarmaConfig(options?: KarmaOptions) {
   return function karmaConfig(config) {
     config.set({
       files,
-      plugins,
       frameworks,
       preprocessors,
+
+      plugins: generatePlugins([ ...karmaPlugins, ...(plugins || []) ]),
 
       reporters: ['mocha', 'coverage-istanbul'],
 

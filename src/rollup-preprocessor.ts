@@ -8,6 +8,7 @@ export function createRollupPreprocessor(opitions: { plugins?: any[], custom?: b
   
   const pluginOptions = {
     plugins: [
+      ...(plugins || []),
       typescript2(createTSConfig()),
       nodeResolve(),
       istanbul({ 
@@ -16,8 +17,7 @@ export function createRollupPreprocessor(opitions: { plugins?: any[], custom?: b
           "node_modules/**/*"
         ] 
       }),
-      commonjs(),
-      ...(plugins || [])
+      commonjs()
     ],
     output: {
       format: 'es',      
@@ -30,7 +30,7 @@ export function createRollupPreprocessor(opitions: { plugins?: any[], custom?: b
           customPreprocessors: {
             rollupNode: {
               base: 'rollup',
-              opitions: { ...pluginOptions }
+              options: { ...pluginOptions }
             }
           } 
       } 
