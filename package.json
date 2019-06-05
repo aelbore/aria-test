@@ -4,8 +4,9 @@
   "description": "",
   "main": "aria-test.js",
   "scripts": {
+    "postinstall": "npm run link.test",
     "build": "ts-node tools/build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "link.test": "ts-node tools/link.test"
   },
   "repository": {
     "type": "git",
@@ -22,10 +23,13 @@
     "aria-build": "^0.0.3"
   },
   "devDependencies": {
-    "aria-build": "^0.0.3",
-    "typescript": "^3.5.1"
+    "aria-build": "^0.0.4",
+    "typescript": "^3.5.1",
+    "vue-template-compiler": "2.6.10",
+    "rollup-plugin-vue": "^5.0.0"
   },
   "dependencies": {
+    "@types/node": "^12.0.4",
     "chai": "^4.2.0",
     "karma": "^4.1.0",
     "karma-chai": "^0.1.0",
