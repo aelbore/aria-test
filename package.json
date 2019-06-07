@@ -10,7 +10,9 @@
     "postinstall": "npm run link.test",
     "build": "ts-node tools/build",
     "link.test": "ts-node tools/post.install",
-    "test.vue": "./bin/aria.js test test/vue --target vue"
+    "test.vue": "./bin/aria.js test test/vue --target vue",
+    "test": "npm run test.vue",
+    "coveralls": "cat ./node_modules/.tmp/coverage/lcovonly | ./node_modules/coveralls/bin/coveralls.js"
   },
   "repository": {
     "type": "git",
@@ -43,6 +45,7 @@
   },
   "dependencies": {
     "chai": "^4.2.0",
+    "coveralls": "^3.0.3",
     "karma": "^4.1.0",
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^2.2.0",
