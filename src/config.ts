@@ -35,46 +35,43 @@ export interface KarmaOptions {
 
 export function createKarmaConfig(options?: KarmaOptions) {
   const { files, frameworks, plugins, rollup, preprocessors, coverageThresholds } = options
+  return {
+    files,
+    frameworks,
+    preprocessors,
 
-  return function karmaConfig(config) {
-    config.set({
-      files,
-      frameworks,
-      preprocessors,
+    plugins: generatePlugins([ ...karmaPlugins, ...(plugins || []) ]),
 
-      plugins: generatePlugins([ ...karmaPlugins, ...(plugins || []) ]),
+    reporters: ['mocha', 'coverage-istanbul'],
 
-      reporters: ['mocha', 'coverage-istanbul'],
+    ...createRollupPreprocessor(rollup),
 
-      ...createRollupPreprocessor(rollup),
-
-      coverageIstanbulReporter: {
-        reports: ['lcov', 'text-summary'],
-        dir: COVERAGE_DEST_PATH,
-        combineBrowserReports: true,
-        skipFilesWithNoCoverage: true,
-        thresholds: {
-          global: {
-            statements: 70,
-            branches: 70,
-            functions: 70,
-            lines: 70,
-            ...(coverageThresholds || {})
-          }
+    coverageIstanbulReporter: {
+      reports: ['lcov', 'text-summary'],
+      dir: COVERAGE_DEST_PATH,
+      combineBrowserReports: true,
+      skipFilesWithNoCoverage: true,
+      thresholds: {
+        global: {
+          statements: 70,
+          branches: 70,
+          functions: 70,
+          lines: 70,
+          ...(coverageThresholds || {})
         }
-      },
-  
-      browsers: ['ChromeHeadlessNoSandbox'],
-  
-      customLaunchers: {
-        ChromeHeadlessNoSandbox: {
-          base: 'ChromeHeadless',
-          flags: ['--no-sandbox']
-        }
-      },
-  
-      singleRun: true,
-      concurrency: Infinity
-    })
+      }
+    },
+
+    browsers: ['ChromeHeadlessNoSandbox'],
+
+    customLaunchers: {
+      ChromeHeadlessNoSandbox: {
+        base: 'ChromeHeadless',
+        flags: ['--no-sandbox']
+      }
+    },
+
+    singleRun: true,
+    concurrency: Infinity
   }
 }

@@ -1,33 +1,45 @@
 {
   "name": "aria-test",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "aria-test.js",
+  "bin": {
+    "aria": "./bin/aria.js"
+  },
   "scripts": {
     "postinstall": "npm run link.test",
     "build": "ts-node tools/build",
-    "link.test": "ts-node tools/link.test"
+    "link.test": "ts-node tools/post.install",
+    "test.vue": "./bin/aria.js test test/vue --target vue"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/aelbore/aria-test.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "test",
+    "unit",
+    "karma",
+    "rollup",
+    "aria"
+  ],
+  "author": "Arjay Elbore",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/aelbore/aria-test/issues"
   },
   "homepage": "https://github.com/aelbore/aria-test#readme",
   "peerDependencies": {
-    "aria-build": "^0.0.3"
+    "aria-build": "^0.0.5"
   },
   "devDependencies": {
+    "@types/karma": "^3.0.3",
     "@types/node": "^12.0.4",
-    "aria-build": "^0.0.4",
+    "aria-build": "^0.0.5",
+    "rollup-plugin-vue": "^5.0.0",
     "typescript": "^3.5.1",
-    "vue-template-compiler": "2.6.10",
-    "rollup-plugin-vue": "^5.0.0"
+    "vue": "^2.6.10",
+    "vue-template-compiler": "2.6.10"
   },
   "dependencies": {
     "chai": "^4.2.0",

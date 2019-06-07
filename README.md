@@ -9,12 +9,12 @@ Installation
 
   ### Setup
   ```typescript
-  import { createKarmaConfig } from 'aria-test'
+  import { karmaConfig } from 'aria-test'
   import { alias } from 'aria-build'
-
+  
   const vue = require('rollup-plugin-vue')
 
-  export default createKarmaConfig({ 
+  export default karmaConfig({ 
     frameworks: ['mocha', 'chai'],
     files: [
       'tests/**/*.spec.js'
@@ -27,9 +27,6 @@ Installation
         }),
         vue()
       ]
-    },
-    preprocessors: {
-      'tests/**/*.spec.js': [ 'rollupNode' ]
     }
   })
   ```
